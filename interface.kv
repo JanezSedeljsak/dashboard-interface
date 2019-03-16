@@ -1,0 +1,112 @@
+<Controller>:
+    label1: label_1
+    label2: label_2
+    label3: label_3
+    btn1: btn_1
+    btn2: btn_2
+    slider1: slider_1
+    slider2: slider_2
+
+    StackLayout:
+        Label:
+            id: label_1
+            text: '[color=2a9c9d][b]Vlaga[/b][/color]'
+            markup: True
+            font_size: '37sp'
+            size_hint: (1/3, 0.15)
+
+        Label:
+            id: label_2
+            text: '[color=B9DA6E][b]Temperatura[/b][/color]'
+            markup: True
+            font_size: '37sp'
+            size_hint: (1/3, 0.15)
+
+        Label:
+            id: label_3
+            text: '[color=f98861][b]Svetlost[/b][/color]'
+            markup: True
+            font_size: '37sp'
+            size_hint: (1/3, 0.15)
+
+        FloatLayout:
+            size_hint: (1/3, 0.5)
+
+            Image:
+                source: './vlaga_merilec.png'
+                size_hint: (0.8, 0.8)
+                pos_hint: {'x': 0.1, 'y': 0.1}
+
+            Image:
+                source: './needle.png'
+                size_hint: (0.8, 0.8)
+                pos_hint: {'x': 0.1, 'y': 0.1}
+
+
+        FloatLayout:
+            size_hint: (1/3, 0.5)
+
+            Image:
+                source: './temperatura_merilec.png'
+                size_hint: (0.8, 0.8)
+                pos_hint: {'x': 0.1, 'y': 0.1}
+
+            Image:
+                source: './needle.png'
+                size_hint: (0.8, 0.8)
+                pos_hint: {'x': 0.1, 'y': 0.1}
+
+
+        FloatLayout:
+            size_hint: (1/3, 0.5)
+
+            Image:
+                source: './svetlost_merilec.png'
+                size_hint: (0.8, 0.8)
+                pos_hint: {'x': 0.1, 'y': 0.1}
+
+            Image:
+                source: './needle.png'
+                size_hint: (0.8, 0.8)
+                pos_hint: {'x': 0.1, 'y': 0.1}
+
+        FloatLayout:
+            size_hint: (1, 0.35)
+
+            Button:
+                id: btn_1
+                text: "[color=888][b]OFF[/b][/color]"
+                size_hint: (1/3, .4)
+                pos_hint: {'x':.03, 'y': .6}
+                border: (28,28,28,28)
+                background_color: (.7, .7, .7, 1.0)
+                markup: True
+                font_size: '37sp'
+                on_press: root.btn1_click
+
+            Button:
+                id: btn_2
+                text: "[color=888][b]OFF[/b][/color]"
+                size_hint: (1/3, .4)
+                pos_hint: {'x':.03, 'y': .1}
+                border: (28,28,28,28)
+                background_color: (.7, .7, .7, 1.0)
+                markup: True
+                font_size: '37sp'
+                on_press: root.btn2_click
+            
+            Slider:
+                id: slider_1
+                min: 0
+                max: 100 
+                value: 25
+                size_hint: (3/5, .4)
+                pos_hint: {'x':2/5, 'y': .6}
+
+            Slider:
+                id: slider_2
+                min: 0
+                max: 100 
+                value: 25
+                size_hint: (3/5, .4)
+                pos_hint: {'x':2/5, 'y': .1}

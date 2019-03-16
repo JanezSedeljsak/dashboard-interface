@@ -12,14 +12,25 @@ class Controller(FloatLayout):
         self.updateGauges()
 
     def updateGauges(self):
-        values = [int(x.split(':')[1]) for x in open("./values.txt", 'r').readline().split(" ")]
-        self.label1.text = '[color=2a9c9d][b]Vlaga (%d)[/b][/color]' % values[0]
-        self.label2.text = '[color=B9DA6E][b]Temperatura (%d)[/b][/color]' % values[1]
-        self.label3.text = '[color=f98861][b]Svetlost (%d)[/b][/color]' % values[2]
+        try:
+            values = [int(x.split(':')[1]) for x in open("./values.txt", 'r').readline().split(" ")]
+            self.label1.text = '[color=2a9c9d][b]Vlaga (%d)[/b][/color]' % values[0]
+            self.label2.text = '[color=B9DA6E][b]Temperatura (%d)[/b][/color]' % values[1]
+            self.label3.text = '[color=f98861][b]Svetlost (%d)[/b][/color]' % values[2]
 
-        self.gauge1.source = './GaugeNeedle/needle%d.png' % (round(values[0]/5)*5)
-        self.gauge2.source = './GaugeNeedle/needle%d.png' % (round(values[1]/5)*5)
-        self.gauge3.source = './GaugeNeedle/needle%d.png' % (round(values[2]/5)*5)
+            # OLD CODE
+            while True:
+                if abs(360 - values[0] - self.gauge1.rotation) < 10:
+                    break
+                if 360 - values[0] > self.gauge1.rotation:
+                    self.gauge1.rotation += 5
+                elif 360 - values[0] < self.gauge1.rotation: 
+                    self.gauge1.rotation -= 5
+            #self.gauge1.rotation = 360 - values[0]
+            self.gauge2.rotation = 360 - values[1]
+            self.gauge3.rotation = 360 - values[2]
+        except:
+            print("error occured")
         #print(values)
         Timer(5, self.updateGauges).start()
 

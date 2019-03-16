@@ -42,7 +42,6 @@
                 size_hint: (0.8, 0.8)
                 pos_hint: {'x': 0.1, 'y': 0.1}
 
-
         FloatLayout:
             size_hint: (1/3, 0.5)
 
@@ -55,7 +54,6 @@
                 source: './needle.png'
                 size_hint: (0.8, 0.8)
                 pos_hint: {'x': 0.1, 'y': 0.1}
-
 
         FloatLayout:
             size_hint: (1/3, 0.5)
@@ -82,7 +80,7 @@
                 background_color: (.7, .7, .7, 1.0)
                 markup: True
                 font_size: '37sp'
-                on_press: root.btn1_click()
+                on_press: root.btn_click(root.btn1, root.slider1)
 
             Button:
                 id: btn_2
@@ -93,7 +91,7 @@
                 background_color: (.7, .7, .7, 1.0)
                 markup: True
                 font_size: '37sp'
-                on_press: root.btn2_click()
+                on_press: root.btn_click(root.btn2, root.slider2)
             
             Slider:
                 id: slider_1
@@ -102,7 +100,7 @@
                 value: 0
                 size_hint: (3/5, .4)
                 pos_hint: {'x':2/5, 'y': .6}
-                on_value: root.slider1_drag()
+                on_value: root.slider_drag(root.btn1, root.slider1)
 
             Slider:
                 id: slider_2
@@ -111,4 +109,4 @@
                 value: 0
                 size_hint: (3/5, .4)
                 pos_hint: {'x':2/5, 'y': .1}
-                on_value: root.slider2_drag()
+                on_value: root.slider_drag(root.btn2, root.slider2)

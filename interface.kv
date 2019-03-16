@@ -6,6 +6,9 @@
     btn2: btn_2
     slider1: slider_1
     slider2: slider_2
+    gauge1: gauge_1
+    gauge2: gauge_2
+    gauge3: gauge_3
 
     FloatLayout:
         Image:
@@ -47,9 +50,10 @@
                     pos_hint: {'x': 0.1, 'y': 0.1}
 
                 Image:
-                    source: './needle.png'
-                    size_hint: (0.8, 0.8)
-                    pos_hint: {'x': 0.1, 'y': 0.1}
+                    id: gauge_1
+                    source: './GaugeNeedle/needle0.png'
+                    size_hint: (0.8, 0.7)
+                    pos_hint: {'x': 0.1, 'y': 0.2}
 
             FloatLayout:
                 size_hint: (1/3, 0.5)
@@ -60,9 +64,10 @@
                     pos_hint: {'x': 0.1, 'y': 0.1}
 
                 Image:
-                    source: './needle.png'
-                    size_hint: (0.8, 0.8)
-                    pos_hint: {'x': 0.1, 'y': 0.1}
+                    id: gauge_2
+                    source: './GaugeNeedle/needle0.png'
+                    size_hint: (0.8, 0.7)
+                    pos_hint: {'x': 0.1, 'y': 0.2}
 
             FloatLayout:
                 size_hint: (1/3, 0.5)
@@ -73,9 +78,10 @@
                     pos_hint: {'x': 0.1, 'y': 0.1}
 
                 Image:
-                    source: './needle.png'
-                    size_hint: (0.8, 0.8)
-                    pos_hint: {'x': 0.1, 'y': 0.1}
+                    id: gauge_3
+                    source: './GaugeNeedle/needle0.png'
+                    size_hint: (0.8, 0.7)
+                    pos_hint: {'x': 0.1, 'y': 0.2}
 
             FloatLayout:
                 size_hint: (1, 0.35)

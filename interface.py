@@ -16,8 +16,12 @@ class Controller(FloatLayout):
         self.label1.text = '[color=2a9c9d][b]Vlaga (%d)[/b][/color]' % values[0]
         self.label2.text = '[color=B9DA6E][b]Temperatura (%d)[/b][/color]' % values[1]
         self.label3.text = '[color=f98861][b]Svetlost (%d)[/b][/color]' % values[2]
+
+        self.gauge1.source = './GaugeNeedle/needle%d.png' % (round(values[0]/5)*5)
+        self.gauge2.source = './GaugeNeedle/needle%d.png' % (round(values[1]/5)*5)
+        self.gauge3.source = './GaugeNeedle/needle%d.png' % (round(values[2]/5)*5)
         #print(values)
-        Timer(3, self.updateGauges).start()
+        Timer(5, self.updateGauges).start()
 
     def btn_click(self, btn, slider): slider.value = float(100) if "ON" not in btn.text.upper() else float(0)
 

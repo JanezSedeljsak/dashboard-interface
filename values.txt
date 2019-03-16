@@ -1,1 +1,1 @@
-svetlost:145 pašteta:-13 kruh:19
+vlaga:98 temp:60 svetlost:142

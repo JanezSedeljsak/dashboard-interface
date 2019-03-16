@@ -1,6 +1,6 @@
-from kivy import *
-
+import kivy
 from kivy.app import App
+from kivy.uix.slider import Slider
 from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
 from kivy.graphics import Color, Rectangle
@@ -18,6 +18,7 @@ Window.size = (1280, 640)
 Window.clearcolor = (0.2, 0.2, 0.2, 0.5)
 
 class Layout():
+    @staticmethod
     def generateWidgets():
         path = dirname(abspath(__file__))
         layout = StackLayout()
@@ -45,19 +46,6 @@ class Layout():
                     "angle": 5
                 }}
             ],
-            "thirdRow": {
-                "leftBottomButton": {
-                    "text": "[color=888][b]OFF[/b][/color]",
-                    "width": 1/3,
-                    "innerSize": {"x": .9, "y": .4},
-                    "margin": {"x": .05, "y": .3},
-                    "afterClick": [
-                        "[color=888][b]OFF[/b][/color]",
-                        "[color=888][b]ON[/b][/color]"
-                        ],
-                    "border":(28,28,28,28)
-                }
-            },
             
         }
 
@@ -101,56 +89,39 @@ class Layout():
             if("ON" in x.text.upper()):
                 x.text=("[color=888][b]OFF[/b][/color]")
                 x.background_color=(.7, .7, .7, 1.0)
+
             else:
                 x.text=("[color=888][b]ON[/b][/color]")
                 x.background_color=(.2, .8, .3, 1.0)
 
-        leftButton = widgets["thirdRow"]["leftBottomButton"]
-        leftButtonParent = FloatLayout(
-            size_hint=(leftButton["width"], 0.35)
-        )
-        button = Button(
-            text = leftButton["text"],
-            size_hint = (leftButton["innerSize"]["x"], leftButton["innerSize"]["y"]),
-            pos_hint= {'x':leftButton["margin"]["x"], 'y': leftButton["margin"]["y"]},
-            border = leftButton["border"],
-            background_color = (.7, .7, .7, 1.0),
-            markup = True,
-            font_size = '37sp'
-        )
-        button.bind(on_press = changeContent)
-        leftButtonParent.add_widget(button)
-        stack.append(leftButtonParent)
+        bottomLayout = FloatLayout(
+            size_hint=(1, 0.35) 
+        )        
+
+        for button in range(2):
+            btn = Button(
+                text = "[color=888][b]OFF[/b][/color]",
+                size_hint = (1/3, .4),
+                pos_hint = {'x':.03, 'y': .6 if button < 1 else .1},
+                border = (28,28,28,28),
+                background_color = (.7, .7, .7, 1.0),
+                markup = True,
+                font_size = '37sp'
+            )
+            btn.bind(on_press = changeContent)
+            bottomLayout.add_widget(btn)
+
+        for slider in range(2):
+            slider = Slider(
+                min=0, max=100, value=25,
+                size_hint = (3/5, .4),
+                pos_hint= {'x':2/5, 'y': .6 if slider < 1 else .1},
+            )   
+            bottomLayout.add_widget(slider)  
 
 
-        leftButton = widgets["thirdRow"]["leftBottomButton"]
-        leftButtonParent = FloatLayout(
-            size_hint=(leftButton["width"], 0.35)
-        )
-        button = Button(
-            text = leftButton["text"],
-            size_hint = (leftButton["innerSize"]["x"], leftButton["innerSize"]["y"]),
-            pos_hint= {'x':leftButton["margin"]["x"], 'y': leftButton["margin"]["y"]},
-            border = leftButton["border"],
-            background_color = (.7, .7, .7, 1.0),
-            markup = True,
-            font_size = '37sp'
-        )
-        button.bind(on_press = changeContent)
-        leftButtonParent.add_widget(button)
-        stack.append(leftButtonParent)
+        stack.append(bottomLayout)
 
-
-##        #### bottom right content
-##        stack.append(Switch(
-##            active=False,
-##            size_hint=(1/3, 0.15)
-##        ))
-##        stack.append(Switch(
-##            active=True,
-##            size_hint=(1/3, 0.15)
-##        ))
-            
 
         [layout.add_widget(widget) for widget in stack]
     

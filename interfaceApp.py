@@ -1,5 +1,7 @@
 import kivy
+import time
 from kivy.app import App
+from kivy.uix.popup import Popup
 from kivy.uix.slider import Slider
 from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
@@ -19,7 +21,7 @@ Window.clearcolor = (0.2, 0.2, 0.2, 0.5)
 
 class Layout():
     @staticmethod
-    def generateWidgets():
+    def _generateWidgets_():
         path = dirname(abspath(__file__))
         layout = StackLayout()
         stack = []
@@ -94,12 +96,31 @@ class Layout():
                 x.text=("[color=888][b]ON[/b][/color]")
                 x.background_color=(.2, .8, .3, 1.0)
 
+
+        def OnSliderChange(x,y):
+            popup = Popup(
+                title='Slider Value',
+                content=Label(text=str(x.value)),
+                size_hint=(None, None),
+                size=(400, 400),
+                auto_dismiss=False
+            )
+            popup.open()
+
+            start = int(time.time())
+            while True:
+                if int(time.time()) < start + 5:
+                    popup.dismiss()
+                    break
+
+
         bottomLayout = FloatLayout(
             size_hint=(1, 0.35) 
         )        
 
         for button in range(2):
             btn = Button(
+                id="%d_button" % button,
                 text = "[color=888][b]OFF[/b][/color]",
                 size_hint = (1/3, .4),
                 pos_hint = {'x':.03, 'y': .6 if button < 1 else .1},
@@ -113,10 +134,12 @@ class Layout():
 
         for slider in range(2):
             slider = Slider(
+                id="%d_slider" % button,
                 min=0, max=100, value=25,
                 size_hint = (3/5, .4),
                 pos_hint= {'x':2/5, 'y': .6 if slider < 1 else .1},
             )   
+            slider.bind(value=OnSliderChange)
             bottomLayout.add_widget(slider)  
 
 
@@ -129,7 +152,7 @@ class Layout():
 
 class intefaceApp(App):
     def build(self):
-        return Layout.generateWidgets()
+        return Layout._generateWidgets_()
         
 
 if __name__ == '__main__':

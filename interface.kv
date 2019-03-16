@@ -7,106 +7,115 @@
     slider1: slider_1
     slider2: slider_2
 
-    StackLayout:
-        Label:
-            id: label_1
-            text: '[color=2a9c9d][b]Vlaga[/b][/color]'
-            markup: True
-            font_size: '37sp'
-            size_hint: (1/3, 0.15)
+    FloatLayout:
+        Image:
+            source: './back.jpg'
+            size_hint: (1, 1)
+            pos_hint: {'x': 0, 'y': 0}
 
-        Label:
-            id: label_2
-            text: '[color=B9DA6E][b]Temperatura[/b][/color]'
-            markup: True
-            font_size: '37sp'
-            size_hint: (1/3, 0.15)
+        StackLayout:
+            pos_hint: {'x': 0, 'y': 0}
+            size_hint: (1, 1)
 
-        Label:
-            id: label_3
-            text: '[color=f98861][b]Svetlost[/b][/color]'
-            markup: True
-            font_size: '37sp'
-            size_hint: (1/3, 0.15)
-
-        FloatLayout:
-            size_hint: (1/3, 0.5)
-
-            Image:
-                source: './vlaga_merilec.png'
-                size_hint: (0.8, 0.8)
-                pos_hint: {'x': 0.1, 'y': 0.1}
-
-            Image:
-                source: './needle.png'
-                size_hint: (0.8, 0.8)
-                pos_hint: {'x': 0.1, 'y': 0.1}
-
-        FloatLayout:
-            size_hint: (1/3, 0.5)
-
-            Image:
-                source: './temperatura_merilec.png'
-                size_hint: (0.8, 0.8)
-                pos_hint: {'x': 0.1, 'y': 0.1}
-
-            Image:
-                source: './needle.png'
-                size_hint: (0.8, 0.8)
-                pos_hint: {'x': 0.1, 'y': 0.1}
-
-        FloatLayout:
-            size_hint: (1/3, 0.5)
-
-            Image:
-                source: './svetlost_merilec.png'
-                size_hint: (0.8, 0.8)
-                pos_hint: {'x': 0.1, 'y': 0.1}
-
-            Image:
-                source: './needle.png'
-                size_hint: (0.8, 0.8)
-                pos_hint: {'x': 0.1, 'y': 0.1}
-
-        FloatLayout:
-            size_hint: (1, 0.35)
-
-            Button:
-                id: btn_1
-                text: "[color=888][b]OFF[/b][/color]"
-                size_hint: (1/3, .4)
-                pos_hint: {'x':.03, 'y': .6}
-                border: (28,28,28,28)
-                background_color: (.7, .7, .7, 1.0)
+            Label:
+                id: label_1
+                text: '[color=2a9c9d][b]Vlaga[/b][/color]'
                 markup: True
                 font_size: '37sp'
-                on_press: root.btn_click(root.btn1, root.slider1)
+                size_hint: (1/3, 0.15)
 
-            Button:
-                id: btn_2
-                text: "[color=888][b]OFF[/b][/color]"
-                size_hint: (1/3, .4)
-                pos_hint: {'x':.03, 'y': .1}
-                border: (28,28,28,28)
-                background_color: (.7, .7, .7, 1.0)
+            Label:
+                id: label_2
+                text: '[color=B9DA6E][b]Temperatura[/b][/color]'
                 markup: True
                 font_size: '37sp'
-                on_press: root.btn_click(root.btn2, root.slider2)
-            
-            Slider:
-                id: slider_1
-                min: 0
-                max: 100 
-                value: 0
-                size_hint: (3/5, .4)
-                pos_hint: {'x':2/5, 'y': .6}
-                on_value: root.slider_drag(root.btn1, root.slider1)
+                size_hint: (1/3, 0.15)
 
-            Slider:
-                id: slider_2
-                min: 0
-                max: 100 
-                value: 0
-                size_hint: (3/5, .4)
-                pos_hint: {'x':2/5, 'y': .1}
-                on_value: root.slider_drag(root.btn2, root.slider2)
+            Label:
+                id: label_3
+                text: '[color=f98861][b]Svetlost[/b][/color]'
+                markup: True
+                font_size: '37sp'
+                size_hint: (1/3, 0.15)
+
+            FloatLayout:
+                size_hint: (1/3, 0.5)
+
+                Image:
+                    source: './vlaga_merilec.png'
+                    size_hint: (0.8, 0.8)
+                    pos_hint: {'x': 0.1, 'y': 0.1}
+
+                Image:
+                    source: './needle.png'
+                    size_hint: (0.8, 0.8)
+                    pos_hint: {'x': 0.1, 'y': 0.1}
+
+            FloatLayout:
+                size_hint: (1/3, 0.5)
+
+                Image:
+                    source: './temperatura_merilec.png'
+                    size_hint: (0.8, 0.8)
+                    pos_hint: {'x': 0.1, 'y': 0.1}
+
+                Image:
+                    source: './needle.png'
+                    size_hint: (0.8, 0.8)
+                    pos_hint: {'x': 0.1, 'y': 0.1}
+
+            FloatLayout:
+                size_hint: (1/3, 0.5)
+
+                Image:
+                    source: './svetlost_merilec.png'
+                    size_hint: (0.8, 0.8)
+                    pos_hint: {'x': 0.1, 'y': 0.1}
+
+                Image:
+                    source: './needle.png'
+                    size_hint: (0.8, 0.8)
+                    pos_hint: {'x': 0.1, 'y': 0.1}
+
+            FloatLayout:
+                size_hint: (1, 0.35)
+
+                Button:
+                    id: btn_1
+                    text: "[color=888][b]OFF[/b][/color]"
+                    size_hint: (1/3, .4)
+                    pos_hint: {'x':.03, 'y': .6}
+                    border: (28,28,28,28)
+                    background_color: (.7, .7, .7, 1.0)
+                    markup: True
+                    font_size: '37sp'
+                    on_press: root.btn_click(root.btn1, root.slider1)
+
+                Button:
+                    id: btn_2
+                    text: "[color=888][b]OFF[/b][/color]"
+                    size_hint: (1/3, .4)
+                    pos_hint: {'x':.03, 'y': .1}
+                    border: (28,28,28,28)
+                    background_color: (.7, .7, .7, 1.0)
+                    markup: True
+                    font_size: '37sp'
+                    on_press: root.btn_click(root.btn2, root.slider2)
+                
+                Slider:
+                    id: slider_1
+                    min: 0
+                    max: 100 
+                    value: 0
+                    size_hint: (3/5, .4)
+                    pos_hint: {'x':2/5, 'y': .6}
+                    on_value: root.slider_drag(root.btn1, root.slider1)
+
+                Slider:
+                    id: slider_2
+                    min: 0
+                    max: 100 
+                    value: 0
+                    size_hint: (3/5, .4)
+                    pos_hint: {'x':2/5, 'y': .1}
+                    on_value: root.slider_drag(root.btn2, root.slider2)

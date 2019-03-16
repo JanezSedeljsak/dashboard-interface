@@ -15,30 +15,43 @@ class Controller(StackLayout):
         super(Controller, self).__init__()
 
     def btn1_click(self):
-        if("ON" in self.text.upper()):
-            self.text=("[color=888][b]OFF[/b][/color]")
-            self.background_color=(.7, .7, .7, 1.0)
-            self._0_slider.value = 32.4324234
+        if("ON" in self.btn1.text.upper()):
+            self.btn1.text=("[color=888][b]OFF[/b][/color]")
+            self.btn1.background_color=(.7, .7, .7, 1.0)
+            self.slider1.value = 0.00
 
         else:
-            self.text=("[color=888][b]ON[/b][/color]")
-            self.background_color=(.2, .8, .3, 1.0)
+            self.slider1.value = 100.00
+            self.btn1.text=("[color=888][b]ON[/b][/color]")
+            self.btn1.background_color=(.2, .8, .3, 1.0)
 
     def btn2_click(self):
-        if("ON" in self.text.upper()):
-            self.text=("[color=888][b]OFF[/b][/color]")
-            self.background_color=(.7, .7, .7, 1.0)
-            self._0_slider.value = 32.4324234
+        if("ON" in self.btn2.text.upper()):
+            self.btn2.text=("[color=888][b]OFF[/b][/color]")
+            self.btn2.background_color=(.7, .7, .7, 1.0)
+            self.slider2.value = 0.00
 
         else:
-            self.text=("[color=888][b]ON[/b][/color]")
-            self.background_color=(.2, .8, .3, 1.0)
+            self.slider2.value = 100.00
+            self.btn2.text=("[color=888][b]ON[/b][/color]")
+            self.btn2.background_color=(.2, .8, .3, 1.0)
 
     def slider1_drag(self):
-        self.lbl.text = "You have been pressed"
+        if self.slider1.value > 1.00:
+            self.btn1.text=("[color=888][b]ON[/b][/color]")
+            self.btn1.background_color=(.2, .8, .3, 1.0)
+        else:
+            self.btn1.text=("[color=888][b]OFF[/b][/color]")
+            self.btn1.background_color=(.7, .7, .7, 1.0)
+
 
     def slider2_drag(self):
-        self.lbl.text = "You have been pressed"
+        if self.slider2.value > 1.00:
+            self.btn2.text=("[color=888][b]ON[/b][/color]")
+            self.btn2.background_color=(.2, .8, .3, 1.0)
+        else:
+            self.btn2.text=("[color=888][b]OFF[/b][/color]")
+            self.btn2.background_color=(.7, .7, .7, 1.0)
 
 
 class InterfaceApp(App):

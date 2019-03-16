@@ -82,7 +82,7 @@
                 background_color: (.7, .7, .7, 1.0)
                 markup: True
                 font_size: '37sp'
-                on_press: root.btn1_click
+                on_press: root.btn1_click()
 
             Button:
                 id: btn_2
@@ -93,20 +93,22 @@
                 background_color: (.7, .7, .7, 1.0)
                 markup: True
                 font_size: '37sp'
-                on_press: root.btn2_click
+                on_press: root.btn2_click()
             
             Slider:
                 id: slider_1
                 min: 0
                 max: 100 
-                value: 25
+                value: 0
                 size_hint: (3/5, .4)
                 pos_hint: {'x':2/5, 'y': .6}
+                on_value: root.slider1_drag()
 
             Slider:
                 id: slider_2
                 min: 0
                 max: 100 
-                value: 25
+                value: 0
                 size_hint: (3/5, .4)
                 pos_hint: {'x':2/5, 'y': .1}
+                on_value: root.slider2_drag()

@@ -25,7 +25,7 @@ class Controller(FloatLayout):
         except:
             print("error occured")
 
-        Timer(2, self.updateGauges).start()
+        Timer(1, self.updateGauges).start()
 
     def btn_click(self, btn, slider): slider.value = float(100) if "ON" not in btn.text.upper() else float(0)
 

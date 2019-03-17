@@ -2,7 +2,9 @@ import kivy
 from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
 from threading import Timer
+from kivy.animation import Animation
 from kivy.config import Config
+from custom_kivi import Gauge
 
 [Config.set('graphics', x, y) for x, y in {'resizable': '0', 'width': '1280', 'height': '640'}.items()]
 
@@ -13,26 +15,17 @@ class Controller(FloatLayout):
 
     def updateGauges(self):
         try:
+            w = self
             values = [int(x.split(':')[1]) for x in open("./values.txt", 'r').readline().split(" ")]
-            self.label1.text = '[color=2a9c9d][b]Vlaga (%d)[/b][/color]' % values[0]
-            self.label2.text = '[color=B9DA6E][b]Temperatura (%d)[/b][/color]' % values[1]
-            self.label3.text = '[color=f98861][b]Svetlost (%d)[/b][/color]' % values[2]
+            w.label1.text = '[color=2a9c9d][b]Vlaga (%d)[/b][/color]' % values[0]
+            w.label2.text = '[color=B9DA6E][b]Temperatura (%d)[/b][/color]' % values[1]
+            w.label3.text = '[color=f98861][b]Svetlost (%d)[/b][/color]' % values[2]
+            [Animation(value = values[i]).start(x) for i, x in enumerate([w.gauge1, w.gauge2, w.gauge3])]
 
-            # OLD CODE
-            while True:
-                if abs(360 - values[0] - self.gauge1.rotation) < 10:
-                    break
-                if 360 - values[0] > self.gauge1.rotation:
-                    self.gauge1.rotation += 5
-                elif 360 - values[0] < self.gauge1.rotation: 
-                    self.gauge1.rotation -= 5
-            #self.gauge1.rotation = 360 - values[0]
-            self.gauge2.rotation = 360 - values[1]
-            self.gauge3.rotation = 360 - values[2]
         except:
             print("error occured")
-        #print(values)
-        Timer(5, self.updateGauges).start()
+
+        Timer(2, self.updateGauges).start()
 
     def btn_click(self, btn, slider): slider.value = float(100) if "ON" not in btn.text.upper() else float(0)
 

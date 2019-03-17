@@ -1,1 +1,1 @@
-vlaga:98 temp:60 svetlost:142
+vlaga:89 temp:74 svetlost:48

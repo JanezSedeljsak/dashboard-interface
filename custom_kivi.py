@@ -6,13 +6,12 @@ from kivy.properties import BoundedNumericProperty
 
 class Gauge(Widget):
     value = BoundedNumericProperty(0, min=-20, max=120, errorvalue=0)
-
     def __init__(self, **kwargs):
         super(Gauge, self).__init__(**kwargs)
         self._gauge = Image(
             size = (320, 320),
             pos_hint={'x': 0.1, 'y': .3},
-            source = './svetlost_merilec.png',
+            source = './merilec/temperatura_merilec.png',
         )
         self._needle = Scatter(
             size = (320, 320),
@@ -21,7 +20,7 @@ class Gauge(Widget):
             do_translation = False
         )
         self._needle.add_widget(Image(
-            source = "./needle.png",
+            source = "./merilec/needle.png",
             size = (320, 320)
         ))
         self.add_widget(self._gauge)

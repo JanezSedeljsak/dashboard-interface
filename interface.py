@@ -20,6 +20,13 @@ class Controller(FloatLayout):
             w.label1.text = '[color=2a9c9d][b]Vlaga (%d)[/b][/color]' % values[0]
             w.label2.text = '[color=B9DA6E][b]Temperatura (%d)[/b][/color]' % values[1]
             w.label3.text = '[color=f98861][b]Svetlost (%d)[/b][/color]' % values[2]
+
+            for i in range(len(values)):
+                if values[i]<-20:
+                    values[i]=-20
+                elif values[i]>120:
+                    values[i]=120
+                    
             [Animation(value = values[i]).start(x) for i, x in enumerate([w.gauge1, w.gauge2, w.gauge3])]
 
         except:

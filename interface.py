@@ -15,11 +15,13 @@ class Controller(FloatLayout):
 
     def updateGauges(self):
         try:
-            w = self
-            values = [int(x.split(':')[1]) for x in open("./values.txt", 'r').readline().split(" ")]
-            w.label1.text = '[color=2a9c9d][b]Vlaga (%d)[/b][/color]' % values[0]
-            w.label2.text = '[color=B9DA6E][b]Temperatura (%d)[/b][/color]' % values[1]
-            w.label3.text = '[color=f98861][b]Svetlost (%d)[/b][/color]' % values[2]
+            values = []
+            for x in open("./values.txt", 'r').readline().split(" "):
+                values.append(int(x.split(':')[1]))
+                
+            self.label1.text = '[color=2a9c9d][b]Vlaga (%d)[/b][/color]' % values[0]
+            self.label2.text = '[color=B9DA6E][b]Temperatura (%d)[/b][/color]' % values[1]
+            self.label3.text = '[color=f98861][b]Svetlost (%d)[/b][/color]' % values[2]
 
             for i in range(len(values)):
                 if values[i]<-20:
@@ -27,20 +29,28 @@ class Controller(FloatLayout):
                 elif values[i]>120:
                     values[i]=120
                     
-            [Animation(value = values[i]).start(x) for i, x in enumerate([w.gauge1, w.gauge2, w.gauge3])]
+            Animation(value = values[0]).start(self.gauge1)
+            Animation(value = values[1]).start(self.gauge2)
+            Animation(value = values[2]).start(self.gauge3)
 
         except:
             print("error occured")
 
         Timer(1, self.updateGauges).start()
 
-    def btn_click(self, btn, slider): slider.value = float(100) if "ON" not in btn.text.upper() else float(0)
+    def btn_click(self, btn, slider): 
+        if "ON" not in btn.text.upper():
+            slider.value = float(100)  
+        else:
+            slider.value = float(0)
 
     def slider_drag(self, btn, slider):
-        [setattr(btn, x, y) for x, y in {
-            "text": "[color=888][b]ON[/b][/color]" if slider.value > float(1) else "[color=888][b]OFF[/b][/color]", 
-            "background_color": (.4, .8, .9, 1.0) if slider.value > float(1) else (.7, .7, .7, 1.0)
-        }.items()]
+        if slider.value > float(1):
+            btn.text = "[color=888][b]ON[/b][/color]"
+            btn.background_color = (.4, .8, .9, 1.0)
+        else:
+            btn.text = "[color=888][b]OFF[/b][/color]"
+            btn.background_color = (.7, .7, .7, 1.0)
 
 class InterfaceApp(App): 
     build = lambda self: Controller()

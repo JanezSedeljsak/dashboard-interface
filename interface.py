@@ -1,10 +1,16 @@
 import kivy
+import pyfirmata
+from pyfirmata import Arduino, util
 from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
 from threading import Timer
 from kivy.animation import Animation
 from kivy.config import Config
 from custom_kivi import Gauge
+
+board = pyfirmata.Arduino("/dev/ttyACM0")
+led = board.get_pin('d:11:p')
+led1 = board.get_pin('d:10:p')
 
 [Config.set('graphics', x, y) for x, y in {'resizable': '0', 'width': '1280', 'height': '640'}.items()]
 
@@ -40,17 +46,41 @@ class Controller(FloatLayout):
 
     def btn_click(self, btn, slider): 
         if "ON" not in btn.text.upper():
-            slider.value = float(100)  
+            slider.value = float(100)
+            board.digital[11].write(1)
         else:
             slider.value = float(0)
-
+            board.digital[11].write(0)
+            
     def slider_drag(self, btn, slider):
         if slider.value > float(1):
             btn.text = "[color=888][b]ON[/b][/color]"
             btn.background_color = (.4, .8, .9, 1.0)
+            led.write(round(slider.value/10)/10)
+            
         else:
             btn.text = "[color=888][b]OFF[/b][/color]"
             btn.background_color = (.7, .7, .7, 1.0)
+            led.write(0)
+
+    def btn_click1(self, btn, slider): 
+        if "ON" not in btn.text.upper():
+            slider.value = float(100)
+            board.digital[10].write(1)
+        else:
+            slider.value = float(0)
+            board.digital[10].write(0)
+            
+    def slider_drag1(self, btn, slider):
+        if slider.value > float(1):
+            btn.text = "[color=888][b]ON[/b][/color]"
+            btn.background_color = (.4, .8, .9, 1.0)
+            led1.write(round(slider.value/10)/10)
+            
+        else:
+            btn.text = "[color=888][b]OFF[/b][/color]"
+            btn.background_color = (.7, .7, .7, 1.0)
+            led1.write(0)
 
 class InterfaceApp(App): 
     build = lambda self: Controller()

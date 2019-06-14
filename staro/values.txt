@@ -1,0 +1,1 @@
+temp:23 hum:67 brig:34
